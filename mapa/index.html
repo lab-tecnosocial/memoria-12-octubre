@@ -33,11 +33,8 @@
     <script>
 
         var map = L.map('map', {
-            dragging: !L.Browser.mobile,
-            scrollWheelZoom: false,
-        }).setView([-16.51, -68.16], 7);
-        L.tileLayer('https://api.mapbox.com/styles/v1/labtecnosocial/clwku9msj00br01p6g08s1j3l/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGFidGVjbm9zb2NpYWwiLCJhIjoiY2x5NG03cGUyMDNubDJpcHV6NjZzYWRrZCJ9.nVFNm135XzTFpDohNRv-7Q', {
-            maxZoom: 19,
+        }).setView([-16.51, -68.165], 16);
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
             attributionControl: false
         }).addTo(map);
 
@@ -51,8 +48,26 @@
                 `);
             },
             style: function () {
+                var color;
+                switch (feature.properties['Tipo']) {
+                    case 'Prado Alteño proyectado antes de su consolidación comercial':
+                        color = 'red';
+                        break;
+                    case 'Tipo2':
+                        color = 'blue';
+                        break;
+                    case 'Tipo3':
+                        color = 'yellow';
+                        break;
+                    case 'Tipo4':
+                        color = 'purple';
+                        break;
+                    default:
+                        color = 'black';
+                }
                 return {
-                    weight: 0.8
+                    color: color,
+                    fillOpacity: 0.8
                 };
             }
         });
@@ -78,20 +93,17 @@
 
 
         var bordes = L.geoJSON.ajax("data/bordes.geojson", {
+            style: function (feature) {
+                return {
+                    color: feature.properties['Lugar'] === 'Zona rosa 12 de octubre' ? 'pink' : 'green',
+                    fillOpacity: 0.8
+                };
+            },
             onEachFeature: function (feature, layer) {
                 layer.bindPopup(`
                     <b>${feature.properties['Lugar']}</b>
-                
+
                 `);
-            },
-            pointToLayer: function (feature, latlng) {
-                return L.circleMarker(latlng, {
-                   
-                    fillColor: "green",
-                    color: "green",
-                    fillOpacity: 0.8,
-                    stroke: false
-                });
             }
         });
 
@@ -113,7 +125,7 @@
             }
         });
 
-        
+
         var memoria = L.geoJSON.ajax("data/memoriacolectiva.geojson", {
             onEachFeature: function (feature, layer) {
                 layer.bindPopup(`
@@ -133,21 +145,35 @@
         });
 
         var sendas = L.geoJSON.ajax("data/sendas.geojson", {
+            style: function (feature) {
+                var color;
+                switch (feature.properties['Tipo']) {
+                    case 'Prado Alteño proyectado antes de su consolidación comercial':
+                        color = 'red';
+                        break;
+                    case 'Tipo2':
+                        color = 'blue';
+                        break;
+                    case 'Tipo3':
+                        color = 'yellow';
+                        break;
+                    case 'Tipo4':
+                        color = 'purple';
+                        break;
+                    default:
+                        color = 'black';
+                }
+                return {
+                    color: color,
+                    fillOpacity: 0.8
+                };
+            },
             onEachFeature: function (feature, layer) {
                 layer.bindPopup(`
                     <b>${feature.properties['Tipo']}</b>
                 
                 `);
             },
-            pointToLayer: function (feature, latlng) {
-                return L.circleMarker(latlng, {
-                    
-                    fillColor: "#d9c651",
-                    color: "#000",
-                    fillOpacity: 0.8,
-                    stroke: false
-                });
-            }
         });
 
         // Add layers to the map
@@ -169,7 +195,7 @@
             "Memoria colectiva": memoria,
             "Asociaciones y Sindicatos": asociaciones,
             "Junta Vecinal 12 de octubre": doceoctubre,
-           
+
         };
 
         L.control.layers(null, overlayMaps, {
