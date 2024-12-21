@@ -176,19 +176,15 @@ button {
 }
 
 .logo {
-    height: 210px;
+    height: 180px;
 
 }
 
 .logolab {
-    height: 120px;
+    height: 100px;
 
 }
-.container {
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* Dos columnas, adaptables */
-    gap: 20px; /* Espacio entre columnas */
-  }
+
 
   .creditostext {
     text-align: center; 

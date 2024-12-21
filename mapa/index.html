@@ -19,76 +19,63 @@
 
         html,
         body {
-            height: 100%;
+            height: 90%;
         }
-
         #map {
             height: 100%;
         }
     </style>
 </head>
-
 <body>
+
     <div id="map"></div>
+   
+
     <script>
 
         var map = L.map('map', {
-        }).setView([-16.51, -68.165], 16);
+        }).setView([-16.511694462669155, -68.16252715202555], 15);
         L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
             attributionControl: false
         }).addTo(map);
 
         var asociaciones = L.geoJSON.ajax("data/asociaciones.geojson", {
-            onEachFeature: function (feature, layer) {
-                let nombre = feature.properties['Nombre'] ? feature.properties['Nombre'] : '';
-
-                layer.bindPopup(`
-                    <b>${nombre}</b><br>
-                    Tipo: ${feature.properties['Tipo']}<br>
-                `);
-            },
-            style: function () {
+            style: function (feature) {
                 var color;
                 switch (feature.properties['Tipo']) {
-                    case 'Prado Alteño proyectado antes de su consolidación comercial':
-                        color = 'red';
+                    case 'Transporte':
+                        color = '#000582';
                         break;
-                    case 'Tipo2':
-                        color = 'blue';
+                    case 'Comercio':
+                        color = '#ff0000';
                         break;
-                    case 'Tipo3':
-                        color = 'yellow';
-                        break;
-                    case 'Tipo4':
-                        color = 'purple';
-                        break;
-                    default:
-                        color = 'black';
                 }
                 return {
                     color: color,
-                    fillOpacity: 0.8
+                    fillOpacity: 0.5
                 };
-            }
-        });
-
-        var doceoctubre = L.geoJSON.ajax("data/doceoctubre.geojson", {
+            },
             onEachFeature: function (feature, layer) {
                 layer.bindPopup(`
+                    <b>${feature.properties['Nombre']}</b>
                 
+                `);
+            },
+        });
+
+
+        var doceoctubre = L.geoJSON.ajax("data/doceoctubre.geojson", {
+              style: function (feature) {
+                return {
+                    color: feature.properties['Lugar'],
+                    fillOpacity: 0.1
+                };
+            },
+            onEachFeature: function (feature, layer) {
+                layer.bindPopup(`
                      <b> El 12 de octubre de 1951 la Junta Vecinal 12 de Octubre nacio a la vida. </b>
                 `);
             },
-            pointToLayer: function (feature, latlng) {
-                return L.circleMarker(latlng, {
-
-                    fillColor: "red",
-                    color: "#000",
-                    fillOpacity: 0.8,
-                    stroke: false
-
-                });
-            }
         });
 
 
@@ -116,8 +103,8 @@
             },
             pointToLayer: function (feature, latlng) {
                 return L.circleMarker(latlng, {
-                    radius: 5,
-                    fillColor: "green",
+                    radius: 6,
+                    fillColor: "#ff1b96",
                     color: "#000",
                     fillOpacity: 0.8,
                     stroke: false
@@ -135,9 +122,8 @@
             },
             pointToLayer: function (feature, latlng) {
                 return L.circleMarker(latlng, {
-                    radius: 5,
-                    fillColor: "#d9c651",
-                    color: "#000",
+                    radius: 6,
+                    fillColor: "#ff721b",
                     fillOpacity: 0.8,
                     stroke: false
                 });
@@ -149,23 +135,21 @@
                 var color;
                 switch (feature.properties['Tipo']) {
                     case 'Prado Alteño proyectado antes de su consolidación comercial':
-                        color = 'red';
+                        color = 'green';
                         break;
-                    case 'Tipo2':
+                    case 'Instalación de alcantarillado pluvial 2013':
                         color = 'blue';
                         break;
-                    case 'Tipo3':
-                        color = 'yellow';
-                        break;
-                    case 'Tipo4':
+                    case 'Mejoramiento barrial de vias autogestionados por la Junta Vecinal 12 de Octubre':
                         color = 'purple';
                         break;
-                    default:
-                        color = 'black';
+                    case 'Área de trabajo Asociación de Transporte Libre en triciclos al servicio público El Alto - ATLT':
+                        color = 'yellow';
+                        break;
                 }
                 return {
                     color: color,
-                    fillOpacity: 0.8
+                    fillOpacity: 0.5
                 };
             },
             onEachFeature: function (feature, layer) {
