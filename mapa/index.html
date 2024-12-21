@@ -21,15 +21,17 @@
         body {
             height: 90%;
         }
+
         #map {
             height: 100%;
         }
     </style>
 </head>
+
 <body>
 
     <div id="map"></div>
-   
+
 
     <script>
 
@@ -65,7 +67,7 @@
 
 
         var doceoctubre = L.geoJSON.ajax("data/doceoctubre.geojson", {
-              style: function (feature) {
+            style: function (feature) {
                 return {
                     color: feature.properties['Lugar'],
                     fillOpacity: 0.1
