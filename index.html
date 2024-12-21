@@ -16,14 +16,83 @@
             top: 10px;
             right: 10px;
             z-index: 1000;
-            padding: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .lang-switch input {
+            display: none;
+        }
+
+        .slider {
+            position: relative;
+            width: 60px;
+            height: 34px;
+            background-color: #ccc;
+            border-radius: 34px;
+            cursor: pointer;
+            transition: background-color 0.4s;
+            margin: 0 10px;
+        }
+
+        .slider:before {
+            content: "";
+            position: absolute;
+            width: 26px;
+            height: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            border-radius: 50%;
+            transition: transform 0.4s;
+        }
+
+        input:checked+.slider {
+            background-color: #ccc;
+        }
+
+        input:checked+.slider:before {
+            transform: translateX(26px);
+        }
+
+        .lang-label {
+            color: white;
+            text-shadow: 1px 1px 2px black;
+            font-size: 12px;
+        }
+
+        @media (max-width: 600px) {
+            .slider {
+                width: 30px;
+                height: 17px;
+            }
+
+            .slider:before {
+                width: 13px;
+                height: 13px;
+                left: 2px;
+                bottom: 2px;
+            }
+
+            input:checked+.slider:before {
+                transform: translateX(13px);
+            }
+
+            .lang-label {
+                font-size: 8px;
+            }
         }
     </style>
 </head>
 
 <body>
     <!-- boton para cambiar de idioma -->
-    <button class="lang-switch" onclick="switchLanguage()">En Aymara</button>
+    <div class="lang-switch">
+        <span class="lang-label">Español</span>
+        <input type="checkbox" id="lang-toggle" onclick="switchLanguage()">
+        <label for="lang-toggle" class="slider"></label>
+        <span class="lang-label">Aymara</span>
+    </div>
     <main>
         <section id="intro" class="scrolly">
             <figure id="intro-fig" class="figure__full">
@@ -36,7 +105,7 @@
                     adultxs mayores de la Ciudad de El Alto</h1>
                 <br>
                 <p>
-                    ACEA - LABTECNOSOCIAL
+                    ACEA - Lab TecnoSocial
                 </p>
             </div>
         </section>
@@ -59,7 +128,11 @@
             <!-- otro idioma -->
             <article class="lang-otro article__center">
                 <div class="step" data-step="1">
-                    <p>Jichha yatxatawixa lurawi lurawi ukhamaraki evolución urbana ukanaka uñacht’ayiwa chuymani jaqinakaru uñjata 12 de Octubre zona El Alto uksana. Khitinakatix experienciapat ukhamarak sapa uru jakawipat yatiyapxi, espacios ukanakan jach’a mayjt’awinakapata. Uka chiqaru puritapatxa, proceso de urbanización, ch’axwawipaxa servicios básicos ukanaka katuqañataki ukatxa qhiparuxa Casco Urbano Central de El Alto ukhamxa ch’amanchatarakiwa</p>
+                    <p>Jichha yatxatawixa lurawi lurawi ukhamaraki evolución urbana ukanaka uñacht’ayiwa chuymani
+                        jaqinakaru uñjata 12 de Octubre zona El Alto uksana. Khitinakatix experienciapat ukhamarak sapa
+                        uru jakawipat yatiyapxi, espacios ukanakan jach’a mayjt’awinakapata. Uka chiqaru puritapatxa,
+                        proceso de urbanización, ch’axwawipaxa servicios básicos ukanaka katuqañataki ukatxa qhiparuxa
+                        Casco Urbano Central de El Alto ukhamxa ch’amanchatarakiwa</p>
                 </div>
             </article>
         </section>
@@ -468,8 +541,8 @@
             <!-- español -->
             <article class="lang-espanol article__center">
                 <div class="step" data-step="1">
-                    <p> 
-                    La zona 12 de octubre con amplias calles que pronto seran empedradas y adoquinadas.
+                    <p>
+                        La zona 12 de octubre con amplias calles que pronto seran empedradas y adoquinadas.
                     </p>
                 </div>
             </article>
@@ -478,7 +551,7 @@
                 <div class="step" data-step="1">
                     <p> 12 de Octubre uksanx jach’a callinakaw utji, ukax niyaw asfaltatäni ukat asfaltatäni.
                     </p>
-                    </div>
+                </div>
             </article>
         </section>
 
@@ -491,7 +564,7 @@
                 <div class="step" data-step="1">
                     <p>
                         <b>Las casas han cambiado, el adoquinado (...) las casas ya no son de los primeros dueños.</b>
-                            <br> <i>(Testimonio de Felix Calle Tola, vecino de la 12 de Octubre).</i>
+                        <br> <i>(Testimonio de Felix Calle Tola, vecino de la 12 de Octubre).</i>
                     </p>
                 </div>
             </article>
@@ -1006,15 +1079,14 @@
             </article>
         </section>
 
-        <section class="scrolly" data-flourishid="20201901">
+        <section class="scrolly">
             <figure class="figure__semifull">
 
                 <iframe src='https://flo.uri.sh/visualisation/20801901/embed' title='Interactive or visual content'
                     class='flourish-embed-iframe' frameborder='0' scrolling='no' style='width:100%;height:600px;'
                     sandbox='allow-same-origin allow-forms allow-scripts allow-downloads allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation'></iframe>
-                <div style='width:100%!;margin-top:4px!important;text-align:right!important;'><a class='flourish-credit'
-                        href='https://public.flourish.studio/visualisation/20801901/?utm_source=embed&utm_campaign=visualisation/20801901'
-                        target='_top' style='text-decoration:none!important'></div>
+                <div style='width:100%!;margin-top:4px!important;text-align:right!important;'>
+                </div>
             </figure>
 
             <!-- español -->
@@ -1095,7 +1167,8 @@
             <!-- español -->
             <article class="lang-espanol article__center">
                 <div class="step" data-step="1">
-                    <p>La memoria histórica de la zona 12 de octubre, sólo puede develarse en relación directa con sus habitantes
+                    <p>La memoria histórica de la zona 12 de octubre, sólo puede develarse en relación directa con sus
+                        habitantes
                         que, cuan archivos parlantes, fungen como memorias dispersas de un espectro colectivo que toma
                         forma al preguntar <b>¿Cómo es el mapa mental de la zona 12 de octubre?</b>
                     </p>
@@ -1104,7 +1177,10 @@
             <!-- otro idioma -->
             <article class="lang-otro article__center">
                 <div class="step" data-step="1">
-                    <p>Zona 12 uru aka llumpaqa phaxsitx nayra amtäwipax markachirinakapamp chikaw uñacht’ayasispa, jupanakax arsuñ archivonakar uñtasitaw mä espectro colectivo ukan ch’iqiyata amtawinakjam irnaqapxi, ukax jiskt’asisaw uñstaski <b> ¿¿Kunjamsa 12 urunak saraqkipan octubre phaxsitx mental mapa ukax utji? </b></p>
+                    <p>Zona 12 uru aka llumpaqa phaxsitx nayra amtäwipax markachirinakapamp chikaw uñacht’ayasispa,
+                        jupanakax arsuñ archivonakar uñtasitaw mä espectro colectivo ukan ch’iqiyata amtawinakjam
+                        irnaqapxi, ukax jiskt’asisaw uñstaski <b> ¿¿Kunjamsa 12 urunak saraqkipan octubre phaxsitx
+                            mental mapa ukax utji? </b></p>
                 </div>
             </article>
         </section>
@@ -1122,24 +1198,24 @@
                 </h3>
                 <br>
                 <br>
-                
-                        <p>Un proyecto desarrollado por:</p>
-                        <img src="img/acea.png" class="logo">
-                        <br>
-                        <br>
-                        <p>En colaboración con el:</p>
-                        <br>
-                        <img src="img/labtecnosocial.png" class="logolab">
-                        <br>
-                        <br>
-                   
-                        <p>Con el apoyo de:</p>
-                        <img src="img/misereor.png" class="logo">
-                        <br>
-                        <p>Gestiona:</p>
-                        <img src="img/imagen.png" class="logo">
-                        <br>
-                        <br>
+
+                <p>Un proyecto desarrollado por:</p>
+                <img src="img/acea.png" class="logo">
+                <br>
+                <br>
+                <p>En colaboración con el:</p>
+                <br>
+                <img src="img/labtecnosocial.png" class="logolab">
+                <br>
+                <br>
+
+                <p>Con el apoyo de:</p>
+                <img src="img/misereor.png" class="logo">
+                <br>
+                <p>Gestiona:</p>
+                <img src="img/imagen.png" class="logo">
+                <br>
+                <br>
                 <p>En coordinación con:</p>
                 <br><br>
                 <img src="img/cedib.png" class="logo">
@@ -1162,13 +1238,13 @@
                     <br><b>Pedro Mollinedo </b>– Entrevistas
                 </p>
                 <br>
-                <h3 class="creditostext">Equipo Labtecnosocial</h3>
+                <h3 class="creditostext">Equipo Lab TecnoSocial</h3>
                 <br>
                 <p>
-                  <br><b>Abigail Roque</b> – Desarrollo web de storytelling digital, edición y visualización de datos
-                <br><b>Alex Ojeda</b> – Desarrollo web de storytelling digital   
+                    <br><b>Abigail Roque</b> – Desarrollo web de storytelling digital, edición y visualización de datos
+                    <br><b>Alex Ojeda</b> – Desarrollo web de storytelling digital
                 </p>
-               
+
 
 
                 <h3 class="creditostext"> Referencias </h3>
@@ -1228,18 +1304,16 @@
         function switchLanguage() {
             const langEspanol = document.querySelectorAll('.lang-espanol');
             const langOtro = document.querySelectorAll('.lang-otro');
-            const button = document.querySelector('.lang-switch');
+            const toggle = document.getElementById('lang-toggle');
 
             langEspanol.forEach(el => el.style.display = el.style.display === 'none' ? 'block' : 'none');
             langOtro.forEach(el => el.style.display = el.style.display === 'none' ? 'block' : 'none');
-
-            if (button.innerText === 'En Aymara') {
-                button.innerText = 'En Español';
-            } else {
-                button.innerText = 'En Aymara';
-            }
         }
 
+        // Initially hide the Aymara content
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.lang-otro').forEach(el => el.style.display = 'none');
+        });
         // Initially hide the Aymara content
         document.addEventListener('DOMContentLoaded', () => {
             document.querySelectorAll('.lang-otro').forEach(el => el.style.display = 'none');
