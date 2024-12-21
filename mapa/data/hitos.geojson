@@ -1,0 +1,7 @@
+{"type":"FeatureCollection", "features":[
+{"type":"Feature","geometry":{"type":"Point","coordinates":[-68.16342714611385,-16.514385958753756]},"properties":{"Id":0,"Descripcio":"Antigua iglesia"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[-68.16342714611385,-16.513080446705192]},"properties":{"Id":0,"Descripcio":"Antigua pileta pública"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[-68.161080396888,-16.50572220681477]},"properties":{"Id":0,"Descripcio":"Ferrocarril La Paz-Guaqui"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[-68.1638968231473,-16.514194373784896]},"properties":{"Id":0,"Descripcio":"Sede de la Liga Deportiva Única 12 de Octubre - Trabajo comunitario"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[-68.16576144029558,-16.51626908864002]},"properties":{"Id":0,"Descripcio":"Cielo Mall"}}
+]}

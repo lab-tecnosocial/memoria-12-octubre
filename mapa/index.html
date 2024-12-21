@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="https://unpkg.com/leaflet-ajax/dist/leaflet.ajax.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.panellayers/dist/leaflet.panellayers.css" />
+    <script src="https://unpkg.com/leaflet.panellayers"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        #map {
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="map"></div>
+    <script>
+
+        var map = L.map('map', {
+            dragging: !L.Browser.mobile,
+            scrollWheelZoom: false,
+        }).setView([-16.51, -68.16], 7);
+        L.tileLayer('https://api.mapbox.com/styles/v1/labtecnosocial/clwku9msj00br01p6g08s1j3l/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGFidGVjbm9zb2NpYWwiLCJhIjoiY2x5NG03cGUyMDNubDJpcHV6NjZzYWRrZCJ9.nVFNm135XzTFpDohNRv-7Q', {
+            maxZoom: 19,
+            attributionControl: false
+        }).addTo(map);
+
+        var asociaciones = L.geoJSON.ajax("data/asociaciones.geojson", {
+            onEachFeature: function (feature, layer) {
+                let nombre = feature.properties['Nombre'] ? feature.properties['Nombre'] : '';
+
+                layer.bindPopup(`
+                    <b>${nombre}</b><br>
+                    Tipo: ${feature.properties['Tipo']}<br>
+                `);
+            },
+            style: function () {
+                return {
+                    weight: 0.8
+                };
+            }
+        });
+
+        var doceoctubre = L.geoJSON.ajax("data/doceoctubre.geojson", {
+            onEachFeature: function (feature, layer) {
+                layer.bindPopup(`
+                
+                     <b> El 12 de octubre de 1951 la Junta Vecinal 12 de Octubre nacio a la vida. </b>
+                `);
+            },
+            pointToLayer: function (feature, latlng) {
+                return L.circleMarker(latlng, {
+
+                    fillColor: "red",
+                    color: "#000",
+                    fillOpacity: 0.8,
+                    stroke: false
+
+                });
+            }
+        });
+
+
+        var bordes = L.geoJSON.ajax("data/bordes.geojson", {
+            onEachFeature: function (feature, layer) {
+                layer.bindPopup(`
+                    <b>${feature.properties['Lugar']}</b>
+                
+                `);
+            },
+            pointToLayer: function (feature, latlng) {
+                return L.circleMarker(latlng, {
+                   
+                    fillColor: "green",
+                    color: "green",
+                    fillOpacity: 0.8,
+                    stroke: false
+                });
+            }
+        });
+
+        var hitos = L.geoJSON.ajax("data/hitos.geojson", {
+            onEachFeature: function (feature, layer) {
+                layer.bindPopup(`
+                    <b>${feature.properties['Descripcio']}</b>
+                
+                `);
+            },
+            pointToLayer: function (feature, latlng) {
+                return L.circleMarker(latlng, {
+                    radius: 5,
+                    fillColor: "green",
+                    color: "#000",
+                    fillOpacity: 0.8,
+                    stroke: false
+                });
+            }
+        });
+
+        
+        var memoria = L.geoJSON.ajax("data/memoriacolectiva.geojson", {
+            onEachFeature: function (feature, layer) {
+                layer.bindPopup(`
+                    <b>${feature.properties['Memoria']}</b>
+                
+                `);
+            },
+            pointToLayer: function (feature, latlng) {
+                return L.circleMarker(latlng, {
+                    radius: 5,
+                    fillColor: "#d9c651",
+                    color: "#000",
+                    fillOpacity: 0.8,
+                    stroke: false
+                });
+            }
+        });
+
+        var sendas = L.geoJSON.ajax("data/sendas.geojson", {
+            onEachFeature: function (feature, layer) {
+                layer.bindPopup(`
+                    <b>${feature.properties['Tipo']}</b>
+                
+                `);
+            },
+            pointToLayer: function (feature, latlng) {
+                return L.circleMarker(latlng, {
+                    
+                    fillColor: "#d9c651",
+                    color: "#000",
+                    fillOpacity: 0.8,
+                    stroke: false
+                });
+            }
+        });
+
+        // Add layers to the map
+        asociaciones.addTo(map);
+        bordes.addTo(map);
+        doceoctubre.addTo(map);
+        hitos.addTo(map);
+        memoria.addTo(map);
+        sendas.addTo(map);
+
+        map.attributionControl.addAttribution('Desarrollado por el <a href="https://labtecnosocial.org/">Lab TecnoSocial</a>');
+
+        // Add layer controls
+
+        var overlayMaps = {
+            "Hitos": hitos,
+            "Sendas": sendas,
+            "Bordes": bordes,
+            "Memoria colectiva": memoria,
+            "Asociaciones y Sindicatos": asociaciones,
+            "Junta Vecinal 12 de octubre": doceoctubre,
+           
+        };
+
+        L.control.layers(null, overlayMaps, {
+            collapsed: false,
+            position: 'bottomright'
+        }).addTo(map);
+
+    </script>
+</body>
+
+</html>

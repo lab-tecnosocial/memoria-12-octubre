@@ -1,0 +1,14 @@
+{"type":"FeatureCollection", "features":[
+{"type":"Feature","geometry":{"type":"Point","coordinates":[-68.16350398309288,-16.514557144992356]},"properties":{"Id":0,"Memoria":"La capilla era como mercadito, después se hizo la cancha."}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[-68.16358576054151,-16.51431924695997]},"properties":{"Id":0,"Memoria":"Don clemente Surco hizo el primer preste en la capillita."}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[-68.15339071623659,-16.512563028575155]},"properties":{"Id":0,"Memoria":"No habia agua, ni luz (...) Agua nos traiamos del Faro."}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[-68.16202701241258,-16.514144855709446]},"properties":{"Id":0,"Memoria":"La zona era vacia con 2 o 3 casitas de tapial, de madera y barro."}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[-68.16285223863422,-16.516312770879697]},"properties":{"Id":0,"Memoria":"El tren bajaba por la Tiahuanacu, eso ha hecho levantar tiendas para comer y beber."}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[-68.16203239536152,-16.51535997437076]},"properties":{"Id":0,"Memoria":"Luego vino el aguadero, haciamos fila desde las 4 de la madrugada."}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[-68.16369565792856,-16.51363700271183]},"properties":{"Id":0,"Memoria":"Pampa era, sembrabamos papa, criabamos vacas, ovejas, chanchos. Ibamos a pastear por el cementerio."}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[-68.16135225544981,-16.51431498882175]},"properties":{"Id":0,"Memoria":"Había sido terrenos de los Ch'ärapaki, los comunarios nos han vendido."}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[-68.16516,-16.513181]},"properties":{"Id":0,"Memoria":"Los bares y lenocinios en su mayoria son lugares alquilados."}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[-68.16337157888017,-16.512855000903738]},"properties":{"Id":0,"Memoria":"Desde 1980 contabamos con la pileta pública."}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[-68.1634766277336,-16.513984276078048]},"properties":{"Id":0,"Memoria":"La cancha de fútbol era de tierra hasta el 2013, luego se convirtió en cancha de césped sintética."}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[-68.16176958386546,-16.51033382842156]},"properties":{"Id":0,"Memoria":"La av. Tiahuanaco se proyecto como el Prado de El Alto, pero por los comerciantes no se concretizo."}}
+]}
